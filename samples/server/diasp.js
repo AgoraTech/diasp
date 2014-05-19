@@ -23,16 +23,18 @@ var
     diasp = new DiaspServer({
 
         resources: {
-            '/sample': {
+            '/sample': [{
                  host: 'localhost',
                  port: 6101,
-                 path: '/testme'
-            },
-            '/sample2': {
+                 path: '/testme',
+                 connectionType: 'websocket'
+            }],
+            '/sample2': [{
                  host: 'localhost',
                  port: 6102,
-                 path: '/testme'
-            }
+                 path: '/testme',
+                 connectionType: 'socket.io'
+            }]
         },
 
         servers: [
