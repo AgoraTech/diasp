@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+    <title>Socket.io Client</title>
+    <style>
+      pre p { background: #eee; padding: 8px; margin: 0; }
+    </style>
+
+  </head>
+
+  <body>
+
+    <pre id="target"></pre>
+
+    <script>
+
+        window.addEventListener('load', function() {
+
+            var
+                socket = io.connect('http://localhost:8100/sample');
+
+                ts = function() {
+
+                    var date = new Date();
+                
+                    return [
+                        '[' +
+                        date.getFullYear() + '-' + 
+                        ('0' + (date.getMonth() + 1)).slice(-2) + '-' + 
+                        ('0' + date.getDate()).slice(-2) + ' ' +
+                        ('0' + date.getHours()).slice(-2) + ':' +
+                        ('0' + date.getMinutes()).slice(-2) + ':' +
+                        ('0' + date.getSeconds()).slice(-2) + 
+                        ']'
+                   ];
+                  
+                },
+                
+                writelog = function(msg) {
+
+                    msg = ts() + ' ' + msg + '\n';
+                    document.getElementById('target').innerHTML += msg;
+
+                };
+
+            socket.on('connect', function() {
+                writelog('Connected to server.');
+            });
+
+            socket.on('close', function() {
+                writelog('Disconnected from server.');
+            });
+
+            socket.on('notice', function(msg) {
+               writelog('Received message from server\n  <p>' + JSON.stringify(msg) + '</p>');
+            });
+
+        });
+
+    </script>
+    <script src="socket.io.js"></script>
+
+  </body>
+
+</html>

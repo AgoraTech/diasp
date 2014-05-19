@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+    <title>Websocket Client</title>
+    <style>
+      pre p { background: #eee; padding: 8px; margin: 0; }
+    </style>
+
+  </head>
+
+  <body>
+
+    <pre id="target"></pre>
+
+    <script>
+
+        window.addEventListener('load', function() {
+
+            var
+                socket = new WebSocket('ws://127.0.0.1:8101/sample', 'echo-protocol'),
+
+                ts = function() {
+
+                    var date = new Date();
+                
+                    return [
+                        '[' +
+                        date.getFullYear() + '-' + 
+                        ('0' + (date.getMonth() + 1)).slice(-2) + '-' + 
+                        ('0' + date.getDate()).slice(-2) + ' ' +
+                        ('0' + date.getHours()).slice(-2) + ':' +
+                        ('0' + date.getMinutes()).slice(-2) + ':' +
+                        ('0' + date.getSeconds()).slice(-2) + 
+                        ']'
+                   ];
+                  
+                },
+                
+                writelog = function(msg) {
+
+                    msg = ts() + ' ' + msg + '\n';
+                    document.getElementById('target').innerHTML += msg;
+
+                };
+
+            socket.onopen = function() {
+                writelog('Connected to server.');
+            };
+
+            socket.onclose = function() {
+                writelog('Disconnected from server.');
+            };
+
+            socket.onmessage = function(msg) {
+               writelog('Received message from server\n  <p>' + msg.data + '</p>');
+            };
+
+        });
+
+    </script>
+
+  </body>
+
+</html>
+
