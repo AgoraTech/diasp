@@ -1,6 +1,6 @@
 {
   "name": "diasp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A module to create unidirectional websocket proxy server.",
   "main": "lib/diaspServer.js",
   "scripts": {
@@ -14,14 +14,9 @@
     "socket.io": ">=0.9",
     "socket.io-client": ">=0.9",
     "websocket": ">=1.0"
-  }
+  },
   "keywords": [
-    "websocket",
-    "socket.io",
-    "proxy",
-    "scalable",
-    "load",
-    "blancer"
+    "websocket", "socket.io", "proxy", "scalable", "load", "blancer"
   ],
   "author": "Agora SA",
   "license": {
