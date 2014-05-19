@@ -1,6 +1,6 @@
 {
   "name": "diasp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A module to create unidirectional websocket proxy server.",
   "main": "lib/diaspServer.js",
   "scripts": {
